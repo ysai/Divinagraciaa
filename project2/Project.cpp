@@ -7,12 +7,12 @@ bool composite[MAX + 1];
 vector<int> primes;
 Project::Project()
 {
-    //ctor
+
 }
 
 Project::~Project()
 {
-    //dtor
+
 }
 
 void Project::multiples_of_3_and_5(){
@@ -655,6 +655,84 @@ int Project::sundaysOnFirst(int endYear) {
 void Project::factorial_digit_sum(){
 string s = "93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000";
 cout << sumDigits(s) << endl;
+}
+
+void Project::names_scores(){
+ifstream myfile;
+   string alpha="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   string line, temp = "";
+   int range=alpha.length();
+   int rank=0;
+   int range_x=0;
+   int range_y=1;
+   int letter=0;
+   int prod=0;
+   int i_n=0;
+   unsigned long int sum = 0;
+   myfile.open ("names.txt");
+   getline(myfile,line);
+   myfile.close();
+   range_x = line.length();
+
+   for(int i=0; i<range_x; i++ )
+   {
+       if(line.at(i)==',')
+       {
+            range_y++;
+       }
+   }
+  string names[range_y];
+    for(int i = 1; i < range_x; i++)
+    {
+        if(line.at(i) == '"' || line.at(i) == ',')
+        {
+            if(temp != "")
+            {
+                names[i_n] = temp;
+                temp = "";
+                i_n++;
+            }
+            continue;
+        }
+        temp += line.at(i);
+    }
+
+    for(int i = 0; i < range_y; i++)
+    {
+        for(int j = 0; j < range_y;j++)
+        {
+            if(names[i] > names[j])
+            {
+                string temp_r = names[j];
+                names[j] = names[i];
+                names[i] = temp_r;
+            }
+        }
+    }
+
+
+	 for(int i = 0; i < range_y; i++)
+    {
+        letter = 0;
+        rank = range_y - i;
+        int range_z = names[i].length();
+        for(int m = 0; m < range_z; m++)
+        {
+            for(int n = 0; n < range; n++)
+            {
+                if(names[i].at(m) == alpha.at(n))
+                {
+                    letter += n + 1;
+                    break;
+                }
+            }
+        }
+
+        prod=rank*letter;
+        sum+=prod;
+        }
+
+    cout<< "Name Score Summation is:" << sum << endl;
 }
 
 int Project::sumDigits(string s) {

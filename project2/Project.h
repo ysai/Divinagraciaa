@@ -54,7 +54,10 @@ class Project
             void updateDate(int numDays);
             int sundaysOnFirst(int endYear);
         void factorial_digit_sum();
+        void names_scores();
             int sumDigits(string s);
+
+
 
             bool Prime_check(long num);
     protected:
