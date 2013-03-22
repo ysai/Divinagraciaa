@@ -742,3 +742,80 @@ int Project::sumDigits(string s) {
     return answer;
 }
 
+ int nthTerm=3;
+    float term1=1;
+    float term2=1;
+    float term3=term1+term2;
+    float numDigit1=0;
+    float numDigit2=0;
+    float numDigit3=0;
+
+void TrickTerm(){
+    term1=term2;
+    term2=term3;
+    numDigit1=numDigit2;
+    numDigit2=numDigit3;
+    if(numDigit1==numDigit2)
+        term3 = term1 + term2;
+    else if(numDigit2 > numDigit1)
+        term3=(term1/10) + term2;
+    while(term3>10){
+        term3=term3/10;
+        numDigit3++;
+    }
+    nthTerm++;
+}
+int numDigits (int n);
+
+void Project::first_1000_digit_fibonacci(){
+    while(numDigit3+1 < 1000)
+        TrickTerm();
+
+    cout<<"The first term in the Fibonacci sequence to contain 1000 digits is: "<<nthTerm<<endl;
+
+}
+
+int numDigits(int n) {
+    int digits = 0;
+    if(n < 0)
+        n = -n;
+    while(n > 0) {
+        digits++;
+        n /= 10;
+    }
+    return digits;
+}
+
+
+void Project::truncatable_primes(){
+    int firstDig = 0;
+    int lastDig = 0;
+    int num = 0;
+    int total = 0;
+    bool prime;
+    for(int i = 8; i < 999999; i++) {
+        prime = false;
+        lastDig = i % 10;
+        if(lastDig == 2 || lastDig == 3 || lastDig == 5 || lastDig == 7) {
+            for(num = i; num > 0; num /= 10)
+                firstDig = num;
+            if(firstDig == 2 || firstDig == 3 || firstDig == 5 || firstDig == 7) {
+                prime = true;
+                    for(num = i; num > 0; num %= (int)pow(10, numDigits(num) - 1)) {
+                        if(!Prime_check(num))
+                            prime = false;
+                }
+                if(prime == true) {
+                    for(num = i; num > 0; num /= 10) {
+                        if(!Prime_check(num))
+                            prime = false;
+                    }
+                }
+            }
+        }
+        if(prime)
+            total += i;
+    }
+    cout<<"The sum of the eleven primes that are both truncatable from L to R & R to L is:"<<total<<endl;
+
+}

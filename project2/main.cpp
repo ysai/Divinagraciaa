@@ -25,9 +25,11 @@ const string problem[]=
     "Counting Sundays",
     "Factorial digit sum",
     "Names Scores",
+    "First 1000-digit Fibonacci number",
+    "Truncatable Primes",
     "Exit"};
 
-const int Num_Problems=21;
+const int Num_Problems=23;
 const int Exit=Num_Problems+1;
 
 int main()
@@ -106,6 +108,12 @@ int main()
                 break;
             case 21:
                 proj.names_scores();
+                break;
+            case 22:
+                proj.first_1000_digit_fibonacci();
+                break;
+            case 23:
+                proj.truncatable_primes();
                 break;
             case Exit:
                 done=true;

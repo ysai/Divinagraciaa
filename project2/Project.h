@@ -32,7 +32,6 @@ class Project
         void summation_of_prime();
 
 
-
         void largest_product_in_grid();
         void highly_divisible_triangular_number();
             int number_divisors(int number);
@@ -56,6 +55,9 @@ class Project
         void factorial_digit_sum();
         void names_scores();
             int sumDigits(string s);
+        void first_1000_digit_fibonacci ();
+        void truncatable_primes ();
+
 
 
 
